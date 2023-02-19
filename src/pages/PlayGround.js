@@ -1,9 +1,9 @@
 import React from 'react'
 
-const PlayGround = () => {
+const Playground = () => {
   return (
     <div>PlayGround</div>
   )
 }
 
-export default PlayGround
+export default Playground
