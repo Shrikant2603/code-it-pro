@@ -2,8 +2,6 @@ import { Suspense } from "react";
 import "./App.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import routes from "./pages/Routes";
-import PlaygroundProvider from "./context/PlaygroundContext";
-import ModalProvider from "./context/ModalContext";
 
 const Loader = () => {
   <div>Loading...</div>;
@@ -12,8 +10,6 @@ function App() {
   return (
     <Suspense fallback={Loader()}>
       {
-        <PlaygroundProvider>
-          <ModalProvider>
             <Router>
               <Routes>
                 <>
@@ -25,8 +21,6 @@ function App() {
                 </>
               </Routes>
             </Router>
-          </ModalProvider>
-        </PlaygroundProvider>
       }
     </Suspense>
   );
