@@ -70,7 +70,10 @@ const PlaygroundProvider = ({ children }) => {
       return newState;
     });
   };
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/master
   const deleteFolder = (folderID) => {
     setFolders((oldState) => {
       const newState = { ...oldState };
@@ -78,7 +81,10 @@ const PlaygroundProvider = ({ children }) => {
       return newState;
     });
   };
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/master
   const addFolder = (folderName) => {
     setFolders((oldState) => {
       const newState = { ...oldState };
@@ -89,19 +95,29 @@ const PlaygroundProvider = ({ children }) => {
       return newState;
     });
   };
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/master
   const addPlayground = (folderID, PlaygroundName, language) => {
     setFolders((oldState) => {
       const newState = { ...oldState };
       newState[folderID].playgrounds[uuid()] = {
         title: PlaygroundName,
+<<<<<<< HEAD
         language: language,
+=======
+        language,
+>>>>>>> origin/master
         code: languageMap[language].defaultCode,
       };
       return newState;
     });
   };
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/master
   const addPlaygroundAndFolder = (folderName, playgroundName, cardLanguage) => {
     setFolders((oldState) => {
       const newState = { ...oldState };
@@ -118,7 +134,10 @@ const PlaygroundProvider = ({ children }) => {
       return newState;
     });
   };
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/master
   const editFolderTitle = (folderID, newFolderTitle) => {
     setFolders((oldState) => {
       const newState = { ...oldState };
@@ -126,7 +145,10 @@ const PlaygroundProvider = ({ children }) => {
       return newState;
     });
   };
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/master
   const editPlaygroundTitle = (cardID, folderID, newPlaygroundTitle) => {
     setFolders((oldState) => {
       const newState = { ...oldState };
@@ -134,7 +156,10 @@ const PlaygroundProvider = ({ children }) => {
       return newState;
     });
   };
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/master
   const savePlayground = (cardID, folderID, newCode, newLanguage) => {
     setFolders((oldState) => {
       const newState = { ...oldState };
@@ -145,6 +170,7 @@ const PlaygroundProvider = ({ children }) => {
   };
 
   const PlaygroundFeatures = {
+<<<<<<< HEAD
     folders: folders,
     deleteCard: deleteCard,
     deleteFolder: deleteFolder,
@@ -154,6 +180,17 @@ const PlaygroundProvider = ({ children }) => {
     editFolderTitle: editFolderTitle,
     editPlaygroundTitle: editPlaygroundTitle,
     savePlayground: savePlayground,
+=======
+    folders,
+    deleteCard,
+    deleteFolder,
+    addFolder,
+    addPlayground,
+    addPlaygroundAndFolder,
+    editFolderTitle,
+    editPlaygroundTitle,
+    savePlayground,
+>>>>>>> origin/master
   };
   return (
     <PlaygroundProvider value={PlaygroundFeatures}>

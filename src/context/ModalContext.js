@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 import { createContext, useState } from 'react'
+=======
+import React, { createContext, useState } from 'react'
+>>>>>>> origin/master
 
 export const ModalContext = createContext();
 
@@ -8,7 +12,11 @@ const ModalProvider = ({children}) => {
     const initialModalFields = {
         show:false,
         modalType:"",
+<<<<<<< HEAD
         identifiers:{
+=======
+        identfiers:{
+>>>>>>> origin/master
             folderID: "",
             cardID: ""
         }
@@ -25,9 +33,15 @@ const ModalProvider = ({children}) => {
     }
 
     const ModalFeatures = {
+<<<<<<< HEAD
       isOpenModal:isOpenModal,
       openModal: openModal,
       closeModal: closeModal,
+=======
+      isOpenModal,
+      openModal,
+      closeModal,
+>>>>>>> origin/master
     }
   return (
     <ModalContext.Provider value={ModalFeatures}>
