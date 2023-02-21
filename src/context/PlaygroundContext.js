@@ -127,7 +127,7 @@ const PlaygroundProvider = ({ children }) => {
     });
   };
 
-  const editPlaygroundTitle = (cardID, folderID, newPlaygroundTitle) => {
+  const editPlaygroundTitle = (folderID, cardID, newPlaygroundTitle) => {
     setFolders((oldState) => {
       const newState = { ...oldState };
       newState[folderID].playgrounds[cardID].title = newPlaygroundTitle;
@@ -156,9 +156,9 @@ const PlaygroundProvider = ({ children }) => {
     savePlayground: savePlayground,
   };
   return (
-    <PlaygroundProvider value={PlaygroundFeatures}>
+    <PlaygroundContext.Provider value={PlaygroundFeatures}>
       {children}
-    </PlaygroundProvider>
+    </PlaygroundContext.Provider>
   );
 };
 

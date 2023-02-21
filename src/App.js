@@ -1,28 +1,40 @@
 import { Suspense } from "react";
-import "./App.css";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import ModalProvider from "./context/ModalContext";
+import PlaygroundProvider from "./context/PlaygroundContext";
 import routes from "./pages/Routes";
 
 const Loader = () => {
-  <div>Loading...</div>;
+  return <div>Loading...</div>;
 };
+
 function App() {
   return (
-    <Suspense fallback={Loader()}>
+    <div className="font-play">
+      <Suspense fallback={Loader()}>
       {
-            <Router>
+        <PlaygroundProvider>
+          <ModalProvider>
+            <BrowserRouter>
               <Routes>
                 <>
-                  {routes.map((route) => {
+                  {routes.map((route, i) => {
                     return (
-                      <Route path={route.path} element={route.component} />
+                      <Route
+                        key={i}
+                        path={route.path}
+                        element={route.component}
+                      />
                     );
                   })}
                 </>
               </Routes>
-            </Router>
+            </BrowserRouter>
+          </ModalProvider>
+        </PlaygroundProvider>
       }
     </Suspense>
+    </div>
   );
 }
 

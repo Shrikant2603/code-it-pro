@@ -2,6 +2,9 @@
 module.exports = {
   content: ["./src/**/*.{html,js}"],
   theme: {
+    fontFamily: {
+      'play': ['Play', 'sans-serif']
+    },
     extend: {
       colors:{
         primary: "#1E90FF",
