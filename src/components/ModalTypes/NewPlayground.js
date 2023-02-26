@@ -3,7 +3,7 @@ import { RxCross1 } from "react-icons/rx";
 import Select from "react-select";
 import { ModalContext } from "../../context/ModalContext";
 import { PlaygroundContext } from "../../context/PlaygroundContext";
-const  NewPlayGround = ()=> {
+const NewPlayGround = () => {
   const { isOpenModal, closeModal } = useContext(ModalContext);
   const { addPlayground } = useContext(PlaygroundContext);
 
@@ -51,6 +51,6 @@ const  NewPlayGround = ()=> {
       </div>
     </>
   );
-}
+};
 
 export default NewPlayGround;

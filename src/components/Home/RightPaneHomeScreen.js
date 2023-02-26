@@ -5,11 +5,12 @@ import { IoTrashOutline } from "react-icons/io5";
 import Card from "../Card";
 import { ModalContext } from "../../context/ModalContext";
 import { PlaygroundContext } from "../../context/PlaygroundContext";
+import { useNavigate } from "react-router-dom";
 
 const RightPaneHomeScreen = () => {
   const { openModal } = useContext(ModalContext);
   const { folders, deleteFolder, deleteCard } = useContext(PlaygroundContext);
-
+  const navigate = useNavigate();
   return (
     <div className="h-screen p-8 overflow-y-auto">
       <div className="flex justify-between items-center">
@@ -33,7 +34,7 @@ const RightPaneHomeScreen = () => {
         </h4>
       </div>
       {/* <hr className="mb-12 mt-4 bg-black" /> */}
-      <hr className="mt-6 border-2 "/>
+      <hr className="mt-6 border-2 " />
 
       {Object.entries(folders).map(([folderId, folder]) => (
         <div className="flex flex-col my-8">
@@ -82,7 +83,13 @@ const RightPaneHomeScreen = () => {
             {Object.entries(folder["playgrounds"]).map(
               ([playgroundId, playground]) => (
                 <Card key={playgroundId}>
-                  <div className="flex items-center justify-between">
+                  <div
+                    className="flex items-center justify-between"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      navigate(`/code/${folderId}/${playgroundId}`);
+                    }}
+                  >
                     <div className="flex gap-4">
                       <img src="/logo-small.png" alt="logo" />
                       <div>
@@ -90,7 +97,12 @@ const RightPaneHomeScreen = () => {
                         <h4>language: {playground.language}</h4>
                       </div>
                     </div>
-                    <div className="flex gap-4 items-center">
+                    <div
+                      className="flex gap-4 items-center"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                      }}
+                    >
                       <BiEditAlt
                         size={"1.5em"}
                         onClick={() =>
@@ -114,7 +126,7 @@ const RightPaneHomeScreen = () => {
               )
             )}
           </div>
-          <hr className="mt-6 border-2"/>
+          <hr className="mt-6 border-2" />
         </div>
       ))}
     </div>
