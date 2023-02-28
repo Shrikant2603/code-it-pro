@@ -10,12 +10,12 @@ import Navbar from "../components/Playground/Navbar";
 import EditContainer from "../components/Playground/EditContainer";
 import InputConsole from "../components/Playground/InputConsole";
 import OutputConsole from "../components/Playground/OutputConsole";
+import Modal from "../components/Modal";
 function PlayGround() {
   const { folderId, playgroundId } = useParams();
   const { folders, savePlayground } = useContext(PlaygroundContext);
-  const { openModal, closeModal } = useContext(ModalContext);
+  const { isOpenModal, openModal, closeModal } = useContext(ModalContext);
   const { title, language, code } = folders[folderId].playgrounds[playgroundId];
-
   const [currentLanguage, setCurrentLanguage] = useState(language);
   const [currentCode, setCurrentCode] = useState(code);
   const [currentInput, setCurrentInput] = useState("");
@@ -29,11 +29,10 @@ function PlayGround() {
   const encode = (str) => {
     return Buffer.from(str, "binary").toString("base64");
   };
-
   const decode = (str) => {
     return Buffer.from(str, "base64").toString();
   };
-
+  
   const postSubmission = async (language_id, source_code, std_in) => {
     const options = {
       method: "POST",
@@ -42,7 +41,7 @@ function PlayGround() {
       headers: {
         "content-type": "application/json",
         "Content-Type": "application/json",
-        "X-RapidAPI-Key": "b4e5c5a05fmsh9adf6ec091523f8p165338jsncc58f31c26e1",
+        "X-RapidAPI-Key": "6c4ed09282msh59a113c68916419p1b83e1jsn831e1bac2c58",
         "X-RapidAPI-Host": "judge0-ce.p.rapidapi.com",
       },
       data: JSON.stringify({
@@ -61,11 +60,10 @@ function PlayGround() {
       url: "https://judge0-ce.p.rapidapi.com/submissions/" + token,
       params: { base64_encoded: true, fields: "*" },
       headers: {
-        "X-RapidAPI-Key": "3ed7a75b44mshc9e28568fe0317bp17b5b2jsn6d89943165d8",
+        "X-RapidAPI-Key": "6c4ed09282msh59a113c68916419p1b83e1jsn831e1bac2c58",
         "X-RapidAPI-Host": "judge0-ce.p.rapidapi.com",
       },
     };
-
     const res = await axios.request(options);
     if (res.data.status_id <= 2) {
       const res2 = await getOutput(token);
@@ -73,6 +71,7 @@ function PlayGround() {
     }
     return res.data;
   };
+
   const runCode = async () => {
     openModal({
       show: true,
@@ -85,8 +84,10 @@ function PlayGround() {
     const language_id = languageMap[currentLanguage].id;
     const source_code = encode(currentCode);
     const std_in = encode(currentInput);
+
     const token = await postSubmission(language_id, source_code, std_in);
     const res = await getOutput(token);
+
     const status_name = res.status.description;
     const decoded_output = decode(res.stdout ? res.stdout : "");
     const decoded_compile_output = decode(
@@ -130,9 +131,9 @@ function PlayGround() {
   };
   return (
     <div>
-      <Navbar />
-      <div className="flex">
-        <div className="w-1/2 h-screen">
+      <Navbar isFullScreen={isFullScreen} />
+      <div className="flex flex-row h-full">
+        <div className={`${isFullScreen ? "w-full" : "w-3/4"}`}>
           <EditContainer
             title={title}
             currentLanguage={currentLanguage}
@@ -148,17 +149,20 @@ function PlayGround() {
             getFile={getFile}
           />
         </div>
-        <div className="w-1/2 h-screen flex flex-col">
-          <InputConsole
-            getFile={getFile}
-            currentInput={currentInput}
-            setCurrentInput={setCurrentInput}
-          />
-          <OutputConsole currentOutput={currentOutput} />
-        </div>
+        {!isFullScreen && (
+          <div className="w-1/4">
+            <InputConsole
+              getFile={getFile}
+              currentInput={currentInput}
+              setCurrentInput={setCurrentInput}
+            />
+            <OutputConsole currentOutput={currentOutput} />
+          </div>
+        )}
+        {isOpenModal.show && <Modal />}
       </div>
     </div>
-  )
+  );
 }
 
 export default PlayGround;

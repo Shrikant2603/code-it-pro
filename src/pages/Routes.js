@@ -1,7 +1,7 @@
 import React, { lazy } from "react";
 
 const Home = lazy(() => import("../pages/Home"));
-const PlayGround = lazy(() => import("./PlayGround"));
+const PlayGround = lazy(() => import("../pages/PlayGround"));
 const Page404 = lazy(() => import("../pages/Page404"));
 
 const routes = [

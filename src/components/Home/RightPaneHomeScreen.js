@@ -37,7 +37,7 @@ const RightPaneHomeScreen = () => {
       <hr className="mt-6 border-2 " />
 
       {Object.entries(folders).map(([folderId, folder]) => (
-        <div className="flex flex-col my-8">
+        <div className="flex flex-col my-8" key={folderId}>
           <div className="flex justify-between items-center">
             <div className="flex items-center cursor-default">
               <FcOpenedFolder size={"2em"} />

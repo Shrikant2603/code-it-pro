@@ -1,12 +1,18 @@
-import React from 'react'
+import React from "react";
 
-const Navbar = () => {
+const Navbar = ({ isFullScreen }) => {
   return (
-    <div className="p-2 bg-black flex justify-center items-center gap-4">
-      <img className="w-24 h-24" src="/logo.png" alt="logo" />
-      <div className="text-white text-4xl">Code Deck</div>
+    <div
+      className={`relative ${
+        isFullScreen ? "h-0" : "h-16"
+      } bg-black flex justify-center items-center gap-4 `}
+    >
+      <img className="w-16" src="/logo.png" alt="logo" />
+      <div className="text-white text-4xl ">
+        <span className="font-bold">Code</span> Deck
+      </div>
     </div>
-  )
-}
+  );
+};
 
-export default Navbar
+export default Navbar;

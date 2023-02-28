@@ -7,7 +7,7 @@ const ModalProvider = ({ children }) => {
     show: false,
     modalType: "",
     identifiers: {
-      folderID: "",
+      folderId: "",
       cardID: "",
     },
   };

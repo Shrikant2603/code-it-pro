@@ -17,7 +17,7 @@ const LeftPaneHomeScreen = () => {
             show: true,
             modalType: 3,
             identifiers: {
-              folderID: "",
+              folderId: "",
               cardID: "",
             },
           })}

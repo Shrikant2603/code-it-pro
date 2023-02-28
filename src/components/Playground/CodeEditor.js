@@ -23,6 +23,7 @@ const CodeEditor = ({
   currentLanguage,
   setCurrentCode,
   currentTheme,
+  isFullScreen,
 }) => {
 
   const [theme, setTheme] = useState(githubDark);
@@ -40,17 +41,70 @@ const CodeEditor = ({
     }
   }, [currentLanguage]);
 
-  useEffect(()=>{
-    if(currentTheme === "githubDark"){
-        setTheme(githubDark);
+  useEffect(() => {
+    if (currentTheme === "githubDark") {
+      setTheme(githubDark);
+    } else if (currentTheme === "githubLight") {
+      setTheme(githubLight);
+    } else if (currentTheme === "bespin") {
+      setTheme(bespin);
+    } else if (currentTheme === "duotoneDark") {
+      setTheme(duotoneDark);
+    } else if (currentTheme === "duotoneLight") {
+      setTheme(duotoneLight);
+    } else if (currentTheme === "dracula") {
+      setTheme(dracula);
+    } else if (currentTheme === "xcodeDark") {
+      setTheme(xcodeDark);
+    } else if (currentTheme === "xcodeLight") {
+      setTheme(xcodeLight);
+    } else if (currentTheme === "vscodeDark") {
+      setTheme(vscodeDark);
+    } else if (currentTheme === "okaidia") {
+      setTheme(okaidia);
     }
-    else if(currentTheme==="githubLight"){
-        setTheme(githubLight);
-    }
-  })
+  }, [currentTheme]);
+
   
   return (
-    <div>CodeEditor</div>
+    <CodeMirror
+    value={currentCode}
+    height={`${isFullScreen ? "92vh" : "76vh"}`}
+    theme={theme}
+    extensions={[
+      language,
+      indentUnit.of("        "),
+      EditorState.tabSize.of(8),
+      EditorState.changeFilter.of(() => true),
+    ]}
+    onChange={(value) => setCurrentCode(value)}
+    basicSetup={{
+      lineNumbers: true,
+      highlightActiveLineGutter: true,
+      highlightSpecialChars: true,
+      history: true,
+      foldGutter: true,
+      drawSelection: true,
+      dropCursor: true,
+      allowMultipleSelections: true,
+      indentOnInput: true,
+      syntaxHighlighting: true,
+      bracketMatching: true,
+      closeBrackets: true,
+      autocompletion: true,
+      rectangularSelection: true,
+      crosshairCursor: true,
+      highlightActiveLine: true,
+      highlightSelectionMatches: true,
+      closeBracketsKeymap: true,
+      defaultKeymap: true,
+      searchKeymap: true,
+      historyKeymap: true,
+      foldKeymap: true,
+      completionKeymap: true,
+      lintKeymap: true,
+    }}
+  />
   )
 }
 
