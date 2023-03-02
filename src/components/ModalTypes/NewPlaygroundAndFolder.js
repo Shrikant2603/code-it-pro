@@ -7,15 +7,16 @@ import { PlaygroundContext } from "../../context/PlaygroundContext";
 const NewPlaygroundAndFolder = () => {
   const { closeModal } = useContext(ModalContext);
   const { addPlaygroundAndFolder } = useContext(PlaygroundContext);
-  const [folderTitle, setFolderTitle] = useState("");
-  const [cardTitle, setCardTitle] = useState("");
-
+  
   const languageOptions = [
     { value: "javascript", label: "javascript" },
     { value: "python", label: "python" },
     { value: "java", label: "java" },
     { value: "cpp", label: "cpp" },
   ];
+  const [folderTitle, setFolderTitle] = useState("");
+  const [cardTitle, setCardTitle] = useState("");
+
 
   const [language, setLanguage] = useState(languageOptions[0]);
   const handleLanguageChange = (selectedOption) => {
