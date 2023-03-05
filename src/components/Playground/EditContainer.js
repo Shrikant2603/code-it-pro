@@ -24,7 +24,7 @@ const EditContainer = ({
   const { openModal } = useContext(ModalContext);
   const themeOptions = [
     { value: "githubDark", label: "Github Dark" },
-    { value: "githubLight", lablel: "github white" },
+    { value: "githubLight", label: "Github White" },
     { value: "bespin", label: "Bespin" },
     { value: "duotoneDark", label: "Duotone Dark" },
     { value: "duotoneLight", label: "Duotone Light" },
@@ -122,13 +122,13 @@ const EditContainer = ({
           {isFullScreen ? "Minimize Screen" : "Full Screen"}
         </button>
 
-        <label className="flex gap-3 items-center" htmlFor="codefile">
+        <label className="flex gap-3 items-center cursor-pointer" htmlFor="codefile">
           <input
             className="hidden"
             type="file"
             accept="."
             id="codefile"
-            onChange={(e) => getFile((e, setCurrentCode))}
+            onChange={(e) => getFile(e, setCurrentCode)}
           />
           <BiImport style={{ fontSize: "1.5rem" }} /> 
           Import Code
