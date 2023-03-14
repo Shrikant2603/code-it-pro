@@ -47,7 +47,7 @@ function PlayGround() {
       data: JSON.stringify({
         language_id: language_id,
         source_code: source_code,
-        std_in: std_in,
+        stdin: std_in,
       }),
     };
     const res = await axios.request(options);
